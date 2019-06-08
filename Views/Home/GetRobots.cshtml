@@ -1,0 +1,43 @@
+﻿@model Dictionary<string,string>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<head>
+    <style>
+        .my-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-gap: 1em;
+            grid-auto-rows: minmax(150px, auto);
+            justify-content: space-around;
+        }
+
+        .my-grid-cell {
+            background-color: #33C2FF;
+            text-align: center;
+            padding-top: 25px;
+            color: #f0f0f0;
+        }
+    </style>
+</head>
+<div>
+    <h3>Полный список роботов</h3>
+    <div class="my-grid">
+        @foreach (var i in Model)
+        {
+            <div class="my-grid-cell">
+                
+                    <h3 class="name">@i.Key</h3>
+                    <h3 class="status">@i.Value</h3>
+            </div>
+        }
+
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.my-grid-cell').on('click', function () {
+            var text = $(this).find('.name').text();
+            window.open("Description?Name="+text, "_top");
+        })
+    })
+</script>
